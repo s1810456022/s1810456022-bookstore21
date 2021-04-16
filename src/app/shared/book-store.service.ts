@@ -32,8 +32,23 @@ export class BookStoreService {
     return this.http.get<Array<Book>>(`${this.api}/books/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  create(book: Book):Observable<any>{
+    return this.http.post(`${this.api}/book`, book).
+      pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  update(book: Book):Observable<any>{
+    return this.http.put(`${this.api}/book/${book.isbn}`, book).
+      pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error:Error | any){
     return throwError(error);
+  }
+
+  check(isbn:String):Observable<Boolean>{
+    return this.http.get<Boolean>(`${this.api}/books/checkisbn/${isbn}`).
+      pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
 }
