@@ -104,6 +104,8 @@ submitForm(){
     if(this.isUpdatingBook){
       this.bs.update(updatedBook).subscribe(res => {
         this.router.navigate(["../../books",updatedBook.isbn],{relativeTo:this.route});
+      }, (err)=>{
+        //TODO sinvolle Fehlermeldung, von der Rest api auch fehlermessage schicken lassen
       });
     } else {
       this.bs.create(updatedBook).subscribe(res => {
