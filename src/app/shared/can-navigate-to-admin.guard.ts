@@ -15,7 +15,7 @@ export class CanNavigateToAdminGuard implements CanActivate {
       return true;
     } else {
       window.alert("Sie müssen sich einloggen, um den Adminbereich nutzen zu können.");
-      this.router.navigate["../"], {relativeTo:this.route};
+      this.router.navigate(["../"], {relativeTo:this.route});
       return false;
     }
   }
